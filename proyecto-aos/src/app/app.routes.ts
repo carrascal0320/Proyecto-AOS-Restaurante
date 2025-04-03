@@ -14,8 +14,4 @@ export const routes: Routes = [
         redirectTo: '/tasks',
 
     },
-    {
-        path: 'dasbohard',
-        redirectTo: '/dashboard',
-    }  
 ];
