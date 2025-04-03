@@ -12,6 +12,10 @@ export const routes: Routes = [
     {
         path: '**',
         redirectTo: '/tasks',
-        
+
     },
+    {
+        path: 'dasbohard',
+        redirectTo: '/dashboard',
+    }  
 ];
