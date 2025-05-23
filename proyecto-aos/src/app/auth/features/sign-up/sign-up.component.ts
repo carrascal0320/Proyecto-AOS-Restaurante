@@ -10,6 +10,8 @@ import { AuthService } from '../../data-access/auth.service';
 import { toast } from 'ngx-sonner';
 import { Router, RouterLink } from '@angular/router';
 import { GoogleButtonComponent } from '../../ui/google-button/google-button.component';
+import { GitHubButtonComponent } from "../../ui/google-button/github-button/github-button.component";
+import { FacebookButtonComponent } from "../../ui/google-button/facebook-button/facebook-button.component";
 
 interface FormSignUp {
   email: FormControl<string | null>;
@@ -19,7 +21,7 @@ interface FormSignUp {
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, GoogleButtonComponent],
+  imports: [ReactiveFormsModule, RouterLink, GoogleButtonComponent, GitHubButtonComponent, FacebookButtonComponent],
   templateUrl: './sign-up.component.html',
 })
 export default class SignUpComponent {
@@ -58,7 +60,7 @@ export default class SignUpComponent {
     }
   }
 
-  async submitWhitGoogle() {
+   async submitWhitGoogle() {
     try {
       await this._authService.signInWhitGoogle();
       toast.success('Bienvenido de nuevo');
@@ -67,4 +69,23 @@ export default class SignUpComponent {
       toast.error('Ocurrió un error');
     }
   }
+
+   async submitWhitGitHub() {
+    try {
+      await this._authService.signInWhitGitHub();
+      toast.success('Bienvenido de nuevo');
+      this._router.navigateByUrl('/tasks');
+    } catch (error) {
+      toast.error('Ocurrió un error');
+    }
+  }
+     async submitWhitFacebook() {
+    try {
+      await this._authService.signInWhitFacebook();
+      toast.success('Bienvenido de nuevo');
+      this._router.navigateByUrl('/tasks');
+    } catch (error) {
+      toast.error('Ocurrió un error');
+    }
+}
 }

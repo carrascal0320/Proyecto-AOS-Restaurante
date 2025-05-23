@@ -5,6 +5,10 @@ import { hasEmailError, isRequired } from '../utils/validators';
 import { Router, RouterLink } from '@angular/router';
 import { toast } from 'ngx-sonner';
 import { GoogleButtonComponent } from '../../ui/google-button/google-button.component';
+import { GitHubButtonComponent } from "../../ui/google-button/github-button/github-button.component";
+import { FacebookButtonComponent } from "../../ui/google-button/facebook-button/facebook-button.component";
+
+
 
 export interface FormSignIn {
   email: FormControl<string | null>;
@@ -14,7 +18,7 @@ export interface FormSignIn {
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, GoogleButtonComponent],
+  imports: [ReactiveFormsModule, RouterLink, GoogleButtonComponent, GitHubButtonComponent, FacebookButtonComponent],
   templateUrl: './sign-in.component.html',
   styles: ``,
 })
@@ -50,7 +54,7 @@ export default class SignInComponent {
       toast.success('Hola nuevamente');
       this._router.navigateByUrl('/tasks');
     } catch (error) {
-      toast.error('Contraseña Incorrecta');
+      toast.error('Usuario no registrado o Contraseña Incorrecta');
     }
   }
   async submitWhitGoogle() {
@@ -62,4 +66,24 @@ export default class SignInComponent {
       toast.error('Ocurrió un error');
     }
   }
+
+   async submitWhitGitHub() {
+    try {
+      await this._authService.signInWhitGitHub();
+      toast.success('Bienvenido de nuevo');
+      this._router.navigateByUrl('/tasks');
+    } catch (error) {
+      toast.error('Ocurrió un error');
+    }
+  }
+
+   async submitWhitFacebook() {
+    try {
+      await this._authService.signInWhitFacebook();
+      toast.success('Bienvenido de nuevo');
+      this._router.navigateByUrl('/tasks');
+    } catch (error) {
+      toast.error('Ocurrió un error');
+    }
+}
 }
