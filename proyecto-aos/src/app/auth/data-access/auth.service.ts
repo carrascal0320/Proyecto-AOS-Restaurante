@@ -4,7 +4,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
-  GoogleAuthProvider
+  GoogleAuthProvider,
+  GithubAuthProvider,
+  FacebookAuthProvider
 } from '@angular/fire/auth';
 
 export interface User {
@@ -32,6 +34,15 @@ export class AuthService {
 
   signInWhitGoogle(){
     const provider = new GoogleAuthProvider();
+    return signInWithPopup(this._auth, provider);
+  }
+
+    signInWhitGitHub(){
+    const provider = new GithubAuthProvider();
+    return signInWithPopup(this._auth, provider);
+  }
+    signInWhitFacebook(){
+    const provider = new FacebookAuthProvider();
     return signInWithPopup(this._auth, provider);
   }
 
