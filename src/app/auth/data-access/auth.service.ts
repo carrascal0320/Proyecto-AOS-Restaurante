@@ -6,7 +6,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   GithubAuthProvider,
-  FacebookAuthProvider
+  FacebookAuthProvider,
+  sendPasswordResetEmail
 } from '@angular/fire/auth';
 
 export interface User {
@@ -44,6 +45,9 @@ export class AuthService {
     signInWhitFacebook(){
     const provider = new FacebookAuthProvider();
     return signInWithPopup(this._auth, provider);
+  }
+   sendPasswordReset(email: string) {
+    return sendPasswordResetEmail(this._auth, email);
   }
 
 }

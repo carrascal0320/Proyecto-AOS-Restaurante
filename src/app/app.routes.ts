@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 export const routes: Routes = [
     {
@@ -13,4 +15,7 @@ export const routes: Routes = [
         path: '**',
         redirectTo: '/tasks',
     },
+    { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  
 ];
